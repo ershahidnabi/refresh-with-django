@@ -20,10 +20,14 @@ from cubetech import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.homepage),
-    path('about-us/', views.aboutUs),
-    path('course/', views.course),
-    path('course/<courseid>', views.courseDetail),
-    path('course/<str:courses>', views.courseDetails),
+    path('', views.Home, name='home'),
+    path('about/', views.About, name='about'),
+    path('contact/', views.Contact, name='contact'),
+    path('service/', views.Service, name='service'),
+    path('blog/', views.Blog, name='blog'),
+    # path('', views.homepage),
+    # path('course/', views.course),
+    # path('course/<courseid>', views.courseDetail),
+    # path('course/<str:courses>', views.courseDetails),
 
 ]
