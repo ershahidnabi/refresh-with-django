@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <style>
+        main {
+            margin: auto;
+            text-align: center;
+            width: 45%;
+            background-color: #676a6a;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+
+        <h1>{{ welcome }}</h1>
+
+        <br>
+        {% for i in clist %}
+        <div>{{forloop.true}} . {{i}}</div>
+        {% endfor %}
+
+
+        <table border="1" cellpadding="10">
+            <tr>
+                <th>Name</th>
+                <th>Id</th>
+
+            </tr>
+            {% for d in std_detail %}
+            <tr>
+                <td>{{d.name}}</td>
+                <td>{{d.id}}</td>
+            </tr>
+            {% endfor%}
+        </table>
+        {% if number|length > 10 %}
+
+        {% for n in number %}
+
+        {% if n > 20 %}
+        <div>{{n}}</div>
+        {% endif %}
+
+        {% endfor %}
+
+        {% else %}
+        <p>No data found.</p>
+        {% endif %}
+    </main>
+
+</body>
+
+</html>
