@@ -1,15 +1,89 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
+<style>
+    footer {
+        background-color: #333;
+        color: #fff;
+        /* padding: 50px 0; */
+        width: 100%;
+    }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    .container {
+        /* max-width: 1100px; */
+        width: 100%;
+        background-color: transparent;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
 
-<body>
-    <h1>footer</h1>
-</body>
+    .footer-cols {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
 
-</html>
+    .footer-col {
+        flex: 1 1 25%;
+        margin-bottom: 20px;
+    }
+
+    .footer-col h4 {
+        color: #fff;
+        margin-bottom: 10px;
+    }
+
+    .footer-col ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .footer-col ul li {
+        margin-bottom: 8px;
+    }
+
+    .social-links a {
+        display: inline-block;
+        margin-right: 10px;
+        color: #fff;
+        text-decoration: none;
+    }
+</style>
+<footer>
+    <div class="container">
+        <div class="footer-cols">
+            <div class="footer-col">
+                <h2>Sirah Tech</h2>
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li>About Us</li>
+                    <li>Services</li>
+                    <li>Contact Us</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li>Web Design</li>
+                    <li>Graphic Design</li>
+                    <li>Digital Marketing</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li>123 Street Name</li>
+                    <li>City, Country</li>
+                    <li>email@example.com</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</footer>

@@ -1,83 +1,101 @@
 {% extends "base.html" %}
 load static
 {% block content %}
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us Form</title>
+    <title>User Form</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            margin: 0;
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #6a6767;
         }
 
-        .contact-form-container {
-            max-width: 600px;
+        .container {
+            width: 50%;
             margin: 50px auto;
-            padding: 20px;
-            background-color: #f9f9f9;
+            padding: 20%;
+            background-color: #3d2a2a;
             border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        .contact-form {
-            display: grid;
-            grid-gap: 10px;
+        form {
+            margin: 100px;
+            padding: 50px;
+            border: 1px solid #5f4ff3;
+            border-radius: 9px;
+            background-color: #555252;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
         }
 
         label {
-            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
         }
 
         input[type="text"],
         input[type="email"],
-        textarea {
+        input[type="password"] {
             width: 100%;
             padding: 8px;
-            border-radius: 5px;
+            margin-bottom: 10px;
             border: 1px solid #ccc;
+            border-radius: 3px;
         }
 
         button {
             padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
+            background-color: #007bff;
+            color: #fff;
             border: none;
-            border-radius: 5px;
+            border-radius: 3px;
             cursor: pointer;
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #0056b3;
         }
     </style>
 </head>
 
 <body>
+    <div class="container">
+        <h1>User Form</h1>
 
-    <div class="contact-form-container">
-        <h2>Contact Us</h2>
-        <form class="contact-form">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter your name" required>
 
-            <label for="email">Your Email</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
-
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
-
+        <form method="post" action="{% url 'submitform' %}">
+            {% csrf_token %}
+            <div>
+                <label for="val1">Value 1</label>
+                <input type="text" name="num1" value="{{n1}}" id="" class="form-control">
+            </div>
+            <div>
+                <label for="val2">Value 2</label>
+                <input type="text" name="num2" value="{{n2}}" id="" class="form-control">
+            </div>
             <button type="submit">Submit</button>
+            <div>
+                output
+                <input type="text" value="{{output}}">
+            </div>
         </form>
-    </div>
 
+
+    </div>
 </body>
 
 </html>
+
 
 {% endblock %}

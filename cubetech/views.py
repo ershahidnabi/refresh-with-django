@@ -1,5 +1,5 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect
 
 
 def Home(request):
@@ -7,11 +7,56 @@ def Home(request):
 
 
 def About(request):
-    return render(request, "about.html")
+    if request.method == 'GET':
+        output = request.GET.get('output')
+        context = {
+            'output': output
+        }
+    return render(request, "about.html", context)
 
 
 def Contact(request):
-    return render(request, "contact.html")
+    #   Case 1
+    #  try:
+    #     n1 = int(request.GET['num1'])
+    #     n2 = int(request.GET['num2'])
+    #     print(n1+n2)
+    # except:
+    #     pass
+
+    # #   Case 2
+    # finalAns = 0
+    # try:
+    #     if request.method == 'GET':
+    #         n1 = int(request.GET.get('num1'))
+    #         n2 = int(request.GET.get('num2'))
+    #         finalAns = n1+n2
+    #         print(n1+n2)
+    # except:
+    #     pass
+
+    #   Case 2
+    finalAns = 0
+    context = {}
+    try:
+        if request.method == 'POST':
+            n1 = int(request.POST.get('num1'))
+            n2 = int(request.POST.get('num2'))
+            finalAns = n1+n2
+            print(n1+n2)
+
+            context = {
+                'n1': n1,
+                'n2': n2,
+                'output': finalAns
+            }
+            url = "/about/?output={}".format(finalAns)
+            # return HttpResponseRedirect(url)
+            # or
+            return redirect(url)
+    except:
+        pass
+    return render(request, "contact.html", context)
 
 
 def Service(request):
@@ -20,6 +65,10 @@ def Service(request):
 
 def Blog(request):
     return render(request, "blog.html")
+
+
+def Submitform(request):
+    return HttpResponse(request)
 
 
 def homepage(request):
