@@ -1,19 +1,104 @@
 {% extends "base.html" %}
 load static
 {% block content %}
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Glassmorphic Form</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+
+        .glass-form-container {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        button {
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            background-color: teal;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #007b86;
+        }
+
+        select {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+    </style>
 </head>
 
 <body>
-    home page
+    <div class="glass-form-container">
+        <h2>Sign Up</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-control">
+                <label for="num1">Value 1:</label>
+                <input type="text" name="num1" required>
+            </div>
+            <div class="form-control">
+                <label for="num2">Value 2:</label>
+                <input type="text" name="num2" required>
+            </div>
+            <div class="form-control">
+                <label for="opr">Choose to:</label>
+                <select name="opr">
+                    <option value="+"> Add +</option>
+                    <option value="-"> Subtract - </option>
+                    <option value="*"> Multiply * </option>
+                    <option value="/"> Divide / </option>
+                </select>
+            </div>
+            <button type="submit">Submit</button>
+            <div class="form-control">
+                <label for="output">Output:</label>
+                <input type="text" value="{{c}}" name="output">
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>
+
+
+
 {% endblock %}

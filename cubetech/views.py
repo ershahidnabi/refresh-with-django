@@ -1,9 +1,28 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
+from . forms import userForm
 
 
 def Home(request):
-    return render(request, "home.html")
+    c = ''
+    try:
+        if request.method == "POST":
+            n1 = eval(request.POST.get('num1'))
+            n2 = eval(request.POST.get('num2'))
+            opr = request.POST.get('opr')
+            if opr == "+":
+                c = n1 + n2
+            elif opr == " - ":
+                c = n1 - n2
+            elif opr == "*":
+                c = n1 * n2
+            elif opr == "/":
+                c = n1 / n2
+
+    except:
+        c = "Invalid Operations"
+    print(c)
+    return render(request, "home.html", {'c': c})
 
 
 def About(request):
@@ -37,7 +56,39 @@ def Contact(request):
 
     #   Case 2
     finalAns = 0
-    context = {}
+    fn = userForm()
+    context = {'form': fn, }
+    try:
+        if request.method == 'POST':
+            n1 = int(request.POST.get('num1'))
+            n2 = int(request.POST.get('num2'))
+            finalAns = n1+n2
+            print(n1+n2)
+
+            context = {
+                'n1': n1,
+                'n2': n2,
+                'output': finalAns,
+                'form': fn,
+            }
+            url = "/about/?output={}".format(finalAns)
+            # return HttpResponseRedirect(url)
+            # or
+            return redirect(url)
+    except:
+        return HttpResponse(url)
+    return render(request, "contact.html", context)
+
+
+def Service(request):
+    return render(request, "service.html")
+
+
+def Blog(request):
+    return render(request, "blog.html")
+
+
+def Submitform(request):
     try:
         if request.method == 'POST':
             n1 = int(request.POST.get('num1'))
@@ -56,19 +107,6 @@ def Contact(request):
             return redirect(url)
     except:
         pass
-    return render(request, "contact.html", context)
-
-
-def Service(request):
-    return render(request, "service.html")
-
-
-def Blog(request):
-    return render(request, "blog.html")
-
-
-def Submitform(request):
-    return HttpResponse(request)
 
 
 def homepage(request):
