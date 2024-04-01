@@ -3,10 +3,53 @@ from django.shortcuts import render, redirect
 from . forms import userForm
 
 
+def marksheet(request):
+    context = {}
+    if request.method == "POST":
+        s1 = eval(request.POST.get('subject1'))
+        s2 = eval(request.POST.get('subject2'))
+        s3 = eval(request.POST.get('subject3'))
+        s4 = eval(request.POST.get('subject4'))
+        s5 = eval(request.POST.get('subject5'))
+        t = s1+s2+s3+s4+s5
+        p = t*100/500
+        if p >= 75:
+            d = 'First Division'
+        elif p >= 50:
+            d = 'Second Division'
+        elif p >= 20:
+            d = 'Third Division'
+        else:
+            d = 'Fourth Division'
+
+        context = {
+            'total': t,
+            'percentage': p,
+            'div': d,
+        }
+        return render(request, 'marksheet.html', context)
+    return render(request, 'marksheet.html')
+
+
+def evenodd(request):
+    c = ''
+    if request.method == "POST":
+        if request.POST.get('num1') == "":
+            return render(request, 'even_odd.html', {'error': True})
+        n = eval(request.POST.get('num1'))
+        if n % 2 == 0:
+            c = 'Even Number'
+        else:
+            c = 'Odd Number'
+
+    return render(request, "even_odd.html", {'c': c})
+
+
 def Home(request):
     c = ''
     try:
         if request.method == "POST":
+
             n1 = eval(request.POST.get('num1'))
             n2 = eval(request.POST.get('num2'))
             opr = request.POST.get('opr')

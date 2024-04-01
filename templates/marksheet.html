@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+load static
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glassmorphic Form</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+
+        .glass-form-container {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        button {
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            background-color: teal;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #007b86;
+        }
+
+        select {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="glass-form-container">
+        <h2>Mark Sheet</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-div">
+                <label for="subject1">Subject 1:</label>
+                <input type="text" name="subject1" class="form-control">
+            </div>
+            <div class="form-div">
+                <label for="subject2">Subject 2:</label>
+                <input type="text" name="subject2" class="form-control">
+            </div>
+            <div class="form-div">
+                <label for="subject3">Subject 3:</label>
+                <input type="text" name="subject3" class="form-control">
+            </div>
+            <div class="form-div">
+                <label for="subject4">Subject 4:</label>
+                <input type="text" name="subject4" class="form-control">
+            </div>
+            <div class="form-div">
+                <label for="subject5">Subject 5:</label>
+                <input type="text" name="subject5" class="form-control">
+            </div>
+            <button type="submit">Generate Mark Sheet</button>
+            <div class="form-div">
+                <label for="total">Total:</label>
+                <input type="text" value="{{total}}" name="total" class="form-control" readonly>
+            </div>
+            <div class="form-div">
+                <label for="percentage">Percentage:</label>
+                <input type="text" value="{{percentage}}" name="percentage" class="form-control" readonly>
+            </div>
+            <div class="form-div">
+                <label for="grade">Grade:</label>
+                <input type="text" value="{{div}}" name="grade" class="form-control" readonly>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
+
+
+{% endblock %}

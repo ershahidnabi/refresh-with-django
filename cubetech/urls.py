@@ -26,6 +26,8 @@ urlpatterns = [
     path('service/', views.Service, name='service'),
     path('blog/', views.Blog, name='blog'),
     path('submitform/', views.Submitform, name='submitform'),
+    path('evenodd/', views.evenodd, name='evenodd'),
+    path('marksheet/', views.marksheet, name='marksheet'),
     # path('', views.homepage),
     # path('course/', views.course),
     # path('course/<courseid>', views.courseDetail),
